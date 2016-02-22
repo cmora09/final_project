@@ -1,7 +1,10 @@
 class CustomersController < ApplicationController
   def index
   	@customer = current_cust
-  	@accounts = @customer.accounts.all
+  	# @checkacct = @customer.accounts.where(account_type: :checking).first
+  	# @checkacct.current_balance
+  	@accounts = @customer.accounts
+  	# @transaction = Transaction.first
   	if !current_cust
   		redirect_to login_path
   	end
@@ -15,7 +18,6 @@ class CustomersController < ApplicationController
   	if @customer.save
   		flash[:notice] = "Welcome to M Banking. We hope provide excellent banking services to make your life easier."
   		redirect_to login_path
-  	end
   	else
   		flash[:alert] = "There was a problem creating your account."
   		redirect_to root_path
@@ -31,7 +33,6 @@ class CustomersController < ApplicationController
   	if @customer.update(customer_params)
   		flash[:notice] = "Your account details have been saved. Thank you."
   		redirect_to root_path
-  	end
   	else
   		flash[:alert] = "An error occured while updating your settings."
   		redirect_to edit_customer_path
@@ -48,7 +49,6 @@ class CustomersController < ApplicationController
   	if @customer.destroy
   		flash[:notice] = "Your account has been deleted. We are sorry to see you go."
   		redirect_to login_path
-  	end
   	else
   		flash[:alert] = "There was a problem deleting your account."
   		redirect_to root_path

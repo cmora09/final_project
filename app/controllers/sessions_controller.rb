@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
   	if @customer && @customer.authenticate(params[:password])
   		session[:customer_id] = @customer.id 
   		redirect_to root_path
-  	end
   	else
   		redirect_to login_path
   	end

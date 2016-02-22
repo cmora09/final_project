@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_cus
 
-  def current_cus
-  	@current_cust ||=User.find(session[:customer_id]) if session[:customer_id]
+  def current_cust
+  	@current_cust ||= Customer.find(session[:customer_id]) if session[:customer_id]
   end
 end
