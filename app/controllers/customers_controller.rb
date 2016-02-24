@@ -1,8 +1,6 @@
 class CustomersController < ApplicationController
   def index
   	@customer = current_cust
-  	# @checkacct = @customer.accounts.where(account_type: :checking).first
-  	# @checkacct.current_balance
   	@accounts = @customer.accounts
   	# @transaction = Transaction.first
   	if !current_cust

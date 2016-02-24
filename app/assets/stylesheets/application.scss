@@ -14,6 +14,63 @@
  *= require_self
  */
 
-body{
-	font-family: 'Poiret One', cursive;
+$bg-color: #E1E1E4;
+$font-color1: white;
+$nav-color: #271339;
+$nav-font-size: 1.50em;
+
+header{
+  margin: 0;
+  nav{
+    background-color: $nav-color;
+    color:black;
+    margin: 0;
+    height: 50px;
+    ul{
+      margin:0;
+      float:right;
+      li{
+        margin: 0;
+        display: inline-block;
+        padding-left: 1em;
+        a{
+          margin: 0;
+          color: $font-color1;
+          text-decoration: none;
+          font-size: 1.5em; 
+          &:hover{
+            font-weight: bold;
+            color: #E1D4E4;
+          }
+        }
+      }
+    }
+  }
 }
+
+body{
+  margin:0;
+  background-color:$bg-color;
+  font-family: 'Poiret One', cursive;
+  
+  h1{
+    margin: 0;
+  }
+  .m{
+    display: inline-block;
+    margin-top: 5px;
+    color: white;
+  }
+  h3{
+    margin: 0;
+  }
+  .jumbotron{
+    background-image: url('atlas.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 60vh;
+  }
+}
+
+
+

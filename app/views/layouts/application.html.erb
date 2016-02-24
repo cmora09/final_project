@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>M Banking</title>
+  <title>MBanking</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <link rel="stylesheet" type="text/css" href="stylesheets/application.scss">
   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
-
 </head>
 <body>
-
+	<header>
+		<nav>
+			<h1 class="m">MBanking</h1>
+			<ul>
+				<li><h3><a href="">Settings</a></h3></li>
+				<li><h3><a href="">Log out</a></h3></li>
+			</ul>
+		</nav>
+	</header>
+	<div class = "jumbotron">
+	</div>
 <%= yield %>
 
 </body>
