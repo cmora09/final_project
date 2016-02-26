@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   root 'customers#index'
+  get 'customers/index', :defaults => {:format => 'json'}
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

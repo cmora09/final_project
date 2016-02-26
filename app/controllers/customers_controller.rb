@@ -2,7 +2,11 @@ class CustomersController < ApplicationController
   def index
   	@customer = current_cust
   	@accounts = @customer.accounts
-  	# @transaction = Transaction.first
+    respond_to do |format|
+        format.html
+        format.json {render :json => @accounts[0].balance}
+    end
+      
   	if !current_cust
   		redirect_to login_path
   	end

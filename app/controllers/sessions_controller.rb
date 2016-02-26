@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @customer = Customer.where(username: params[:username]).first
   end
 
   def create

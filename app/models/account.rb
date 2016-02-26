@@ -3,13 +3,10 @@ class Account < ActiveRecord::Base
   has_many :transactions
   enum account_type: {checking: 0, savings: 1, loan: 2}
 
-  def self.current_balance
-  	
-  end
-
-  def update_balance
-  	#pass in the transactions that occur in transaction controller which would be in the update create
-  end
+  # def interest_rate
+	 #  if account_type == "savings"
+	 #  	self.account.balance *= 0.01
+	 #  end
+  # end
 end
 
-# im updating the account balance with every transaction that is passed

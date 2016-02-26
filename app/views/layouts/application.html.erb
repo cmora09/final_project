@@ -9,17 +9,45 @@
   <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 </head>
 <body>
+	<% if @customer %>
 	<header>
+
 		<nav>
 			<h1 class="m">MBanking</h1>
 			<ul>
 				<li><h3><a href="">Settings</a></h3></li>
-				<li><h3><a href="">Log out</a></h3></li>
+				<li><h3><a href="/logout">Log out</a></h3></li>
 			</ul>
 		</nav>
 	</header>
-	<div class = "jumbotron">
-	</div>
+	<% elsif !@customer %>
+		<header>
+			<nav>
+				<h1 class="m">MBanking</h1>
+				<ul>
+					<li><h3><a href="">About</a></h3></li>
+				</ul>
+			</nav>
+		</header>
+	<% end %>
+	
+		<% if !@customer %>
+		<div class = "jumbotron">
+			<%= form_tag login_path do %>
+				<%= label_tag (:username) %>
+				<%= text_field_tag (:username) %>
+				<%= label_tag (:password) %>
+				<%= password_field_tag (:password) %>
+				<%= submit_tag "Log in" %>
+			<% end %>
+		</div>
+	<% end %> 
+	<% if flash[:notice] %>
+		<%= flash[:notice] %>
+	<% end %>
+	<% if flash[:alert] %>
+		<%= flash[:alert] %>
+	<% end %>
 <%= yield %>
 
 </body>
