@@ -2,9 +2,10 @@ class CustomersController < ApplicationController
   def index
   	@customer = current_cust
   	@accounts = @customer.accounts
+    jsonned = @accounts.as_json
     respond_to do |format|
         format.html
-        format.json {render :json => @accounts[0].balance}
+        format.json {render json: jsonned}
     end
       
   	if !current_cust

@@ -1,11 +1,18 @@
-<h1>Welcome to MBanking, <%=@customer.fname%>.</h1>
-	<h1> Your bank accounts </h1>
-	<% @accounts.each do |account| %>
-		<h1><%= account.account_type %></h1>
-		<h3>Current Balance: 
-		$<%= account.balance %>
-		</h3>
-		<%= link_to "Transaction", new_account_transaction_path(account) %>
-	<% end %>
-	<h2><%= @checkaccount %></h2>
-	<svg id="graph"></svg>
+<div class="user-div">
+	<div class="account-info"> 
+		<h1 class="landing">Welcome to MBanking, <%=@customer.fname%>.</h1>
+		<br>
+		<h1 class="landing"> Your Accounts </h1>
+		<br>
+		<svg id="graph"></svg>
+		<br>
+		<% @accounts.each do |account| %>
+			<h1 class="landing"><%= account.account_type %></h1>
+			<h3 class="landing">balance: 
+			$<%= account.balance %>
+			</h3>
+			<%= link_to "Transaction", new_account_transaction_path(account) %>
+		<% end %>
+		<h2 class="landing"><%= @checkaccount %></h2>
+	</div>
+</div>

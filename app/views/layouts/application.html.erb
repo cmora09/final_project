@@ -31,17 +31,6 @@
 		</header>
 	<% end %>
 	
-		<% if !@customer %>
-		<div class = "jumbotron">
-			<%= form_tag login_path do %>
-				<%= label_tag (:username) %>
-				<%= text_field_tag (:username) %>
-				<%= label_tag (:password) %>
-				<%= password_field_tag (:password) %>
-				<%= submit_tag "Log in" %>
-			<% end %>
-		</div>
-	<% end %> 
 	<% if flash[:notice] %>
 		<%= flash[:notice] %>
 	<% end %>

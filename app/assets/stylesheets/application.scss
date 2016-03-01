@@ -26,6 +26,12 @@ header{
     color:black;
     margin: 0;
     height: 50px;
+    .m{
+      margin: 0 auto;
+      display:inline-block;
+      color: white;
+      text-align: center;
+    }
     ul{
       margin:0;
       float:right;
@@ -49,17 +55,23 @@ header{
 }
 
 body{
-  margin:0;
+  margin: 0;
   background-color:$bg-color;
   font-family: 'Poiret One', cursive;
-  
-  h1{
-    margin: 0;
-  }
-  .m{
+
+  .user-div{
+    text-align: center;
+    width: 100%;
     display: inline-block;
-    margin-top: 5px;
-    color: white;
+    margin: 0 auto;
+  .account-info{
+    margin: 0 auto;
+    display: inline-block;
+    .landing{
+      display: inline-block;
+      margin: 0 auto;
+      }
+    }
   }
   h3{
     margin: 0;
@@ -69,8 +81,10 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     height: 100vh;
-    
-
+  }
+  #graph{
+    margin: 0 auto;
+    display: inline-block;
   }
 }
 
