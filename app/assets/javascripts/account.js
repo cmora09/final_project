@@ -12,7 +12,7 @@ $.ajax({
 });
 	var margin = {top: 30, right: 50, bottom: 30, left: 50}
 	var outerWidth = 1000;
-	var outerHeight = 400;
+	var outerHeight = 350;
 	var innerWidth = outerWidth - margin.left - margin.right;
 	var innerHeight = outerHeight - margin.top - margin.bottom;
 	
@@ -60,22 +60,21 @@ function draw(index){
 		.attr("cy", function(array){ return yScale(array); })
 		.style("fill", color)
 		.style("stroke","#271339")
-		.style("stroke-width","2px");
-		// .on("mouseover", function(){
-		// 			d3.select(this)
-		// 				.transition()
-		// 				.ease("elastic")
-		// 				.duration("5250")
-		// 				.attr("cx", 250 )
-		// 				.attr("cy", 225);
-		// 		});
+		.style("stroke-width","2px")
+		.on("mouseover", function(){
+					d3.select(this)
+						.transition()
+						.ease("elastic")
+						.duration("2000")
+						.attr("cy", 100);
+				});
 	
 		circle
 			.transition()
 			.ease("elastic")
-			.duration("5250")
+			.duration("4000")
 			// .attr("cx", 500)
-			.attr("cy", 200).
+			.attr("cy", 175);///''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 	circle.exit().remove();
 }

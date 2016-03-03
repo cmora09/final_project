@@ -1,9 +1,9 @@
 <div class = "jumbotron">
-	<%= form_tag login_path do %>
-	<%= label_tag (:username) %>
-	<%= text_field_tag (:username) %>
-	<%= label_tag (:password) %>
-	<%= password_field_tag (:password) %>
+	<%= form_tag login_path, class: "myform" do %>
+	<%= label_tag (:username), nil, class: "labelz" %>
+	<%= text_field_tag (:username), nil, class: "txtfield" %><br>
+	<%= label_tag (:password), nil, class: "labelz l2" %>
+	<%= password_field_tag (:password), nil, class: "txtfield" %><br>
 	<%= submit_tag "Log in" %>
 	<% end %>
 </div>
