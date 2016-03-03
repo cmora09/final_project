@@ -4,15 +4,15 @@
 		<br>
 		<h1 class="landing"> Your Accounts </h1>
 		<br>
-		<svg id="graph"></svg>
-		<br>
+		
 		<% @accounts.each do |account| %>
 			<h1 class="landing"><%= account.account_type %></h1>
-			<h3 class="landing">balance: 
-			$<%= account.balance %>
+			<h3 class="landing b" >balance: 
+			$<%= account.balance %>0
 			</h3>
-			<%= link_to "Transaction", new_account_transaction_path(account) %>
 		<% end %>
-		<h2 class="landing"><%= @checkaccount %></h2>
+			<svg id="accounts"></svg>
+			<br>
+		<h2 class="landing"><a href="http://localhost:5000/">Transaction History</a></h2>
 	</div>
 </div>

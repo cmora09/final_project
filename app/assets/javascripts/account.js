@@ -10,107 +10,126 @@ $.ajax({
         error();
     }
 });
-	
-function draw(index){
-
+	var margin = {top: 30, right: 50, bottom: 30, left: 50}
 	var outerWidth = 1000;
-	var outerHeight = 450;
-	var innerWidth = outerWidth - 20;
-	var innerHeight = outerHeight - 20;
+	var outerHeight = 400;
+	var innerWidth = outerWidth - margin.left - margin.right;
+	var innerHeight = outerHeight - margin.top - margin.bottom;
+	
 
-	var rMin = 20;
+	var rMin = 0;
 	var rMax = 50;
-	var xScale = d3.scale.log().range([0,innerWidth]);
-	var yScale = d3.scale.log().range([innerHeight,0]);
+	var xScale = d3.scale.log().range([0, innerWidth]);
+	var yScale = d3.scale.log().range([0, innerHeight]);
 	var rScale = d3.scale.sqrt().range([rMin,rMax]);
 
-	for( i = 0; i < index.length; i++){
-		xScale.domain(d3.extent(index,function(index){return index.balance;}));
-		yScale.domain(d3.extent(index,function(index){return index.balance;}));
-		rScale.domain(d3.extent(index,function(index){return index.balance;}));
+	var xAxis = d3.svg.axis().scale(xScale)
+   	.orient("bottom").ticks(1);
 
-		var svg = d3.select("#graph")
-			.attr("width", outerWidth)
-			.attr("height", outerHeight);
-			color = d3.scale.category10();
+   var yAxis = d3.svg.axis().scale(yScale)
+   	.orient("left").ticks(1);
 
-		var array = [];
-		console.log(array);
-		for(i = 0; i < index.length; i++){
-			array.push(index[i].balance);
-			console.log(array);	
-			
-			var circle = svg.selectAll("circle").data(array);
-			circle.enter().append("circle")
-				.attr("r", function(index){ return rScale(array[i]); })
-				.attr("cx", function(index){ return xScale(array[i]); })
-				.attr("cy", function(index){ return yScale(array[i]); })
-				.style("fill", color)
-				.style("stroke","#D9722D")
-				.on("mouseover", function(){
-					d3.select(this)
-						.transition()
-						.ease("elastic")
-						.duration("5250")
-						.attr("cx", 750 )
-						.attr("cy", 225);
-				});
+function draw(index){
+
+	xScale.domain(d3.extent(index,function(index){return index.balance;}));
+	yScale.domain(d3.extent(index,function(index){return index.balance;}));
+	rScale.domain([0,d3.max(index,function(index){return index.balance;})]);
+
+	var svg = d3.select("#accounts")
+		.attr("width", outerWidth)
+		.attr("height", outerHeight)
+		    .append("g")
+        		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		color = d3.scale.category10();
+	var accountArray = [];
+	var array = [];
+	for(i = 0; i < index.length; i++){
+		array.push(index[i].balance);
+		console.log(index[i].balance);
+		accountArray.push(index[i].account_type);
+	}
+
+	
+
+	console.log(accountArray);
+	console.log(array);
+	var circle = svg.selectAll("circle").data(array);
+	circle.enter().append("circle")
+		.attr("r",  function(array){ return rScale(array); })
+		.attr("cx", function(array){ return xScale(array)/4 + 425; })
+		.attr("cy", function(array){ return yScale(array); })
+		.style("fill", color)
+		.style("stroke","#271339")
+		.style("stroke-width","2px");
+		// .on("mouseover", function(){
+		// 			d3.select(this)
+		// 				.transition()
+		// 				.ease("elastic")
+		// 				.duration("5250")
+		// 				.attr("cx", 250 )
+		// 				.attr("cy", 225);
+		// 		});
 	
 		circle
 			.transition()
 			.ease("elastic")
 			.duration("5250")
-			.attr("cx", 500)
-			.attr("cy", 225);
-			
-		circle.exit().remove();
-		}
-	}
+			// .attr("cx", 500)
+			.attr("cy", 200).
+
+	circle.exit().remove();
 }
+function error() {
+};
 
-// d3.json("customers.json", draw);
+// var parseDate = d3.time.format("%d-%b-%y").parse;
+// var margin = {top:50, right:50, bottom: 30, left: 50}
 
+// var x = d3.time.scale().range([0,outerWidth-200]);
+// var y = d3.scale.linear().range([outerHeight, 0]);
 
-// function draw(index) {
-//     var color = d3.scale.category20b();
-//     var width = 420,
-//         barHeight = 20;
+// var xAxis = d3.svg.axis().scale(x)
+// 	.orient("bottom").ticks(1);
+// var yAxis = d3.svg.axis().scale(y)
+// 	.orient("left").ticks(1);
 
-//     var x = d3.scale.linear()
-//         .range([0, width])
-//         .domain([0, d3.max(index)]);
+// var testLine = d3.svg.line()
+// 	.x(function(d){ return x(x.date);})
+// 	.y(function(d){ return y(y.balance);});
 
-//     var chart = d3.select("#graph")
-//         .attr("width", width)
-//         .attr("height", barHeight * index.length);
+// var lineSvg = d3.select("#transactions")
+// 	.attr("width", outerWidth)
+// 	.attr("height", outerHeight)
+// 	.append("g")
+// 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//     var bar = chart.selectAll("g")
-//         .data(index)
-//         .enter().append("g")
-//         .attr("transform", function (d, i) {
-//                   return "translate(0," + i * barHeight + ")";
-//               });
+// x.domain(d3.extent(data,function(d) { return d.date; }));
+// y.domain([0,d3.max(data,function(d) { return d.balance; })]);
 
-//     bar.append("rect")
-//         .attr("width", x)
-//         .attr("height", barHeight - 1)
-//         .style("fill", function (d) {
-//                    return color(d)
-//                })
+// lineSvg.append("path")
+// 	.attr("class","line")
+// 	.attr("d",testLine(data));
 
-//     bar.append("text")
-//         .attr("x", function (d) {
-//                   return x(d) - 10;
-//               })
-//         .attr("y", barHeight / 2)
-//         .attr("dy", ".35em")
-//         .style("fill", "white")
-//         .text(function (d) {
-//                   return d;
-//               });
-// }
+// lineSvg.selectAll("dawts")
+// 	.data(data)
+// 	.enter().append("circles")
+// 		.attr("r", 4)
+// 		.attr("cx", function(d){ return d.date;})
+// 		.attr("cy", function(d){ return d.balance; });
 
-// function error() {
-//     console.log("error")
-// }
+// lineSvg.append("g")
+// 	.attr("class", "x-axis")
+// 	.attr("transform", "translate(0," + outerHeight + ")")
+// 	.call(xAxis);
+// lineSvg.append("g")
+// 	.attr("class", "y-axis")
+// 	.attr("transform", "translate(0," + outerHeight + ")")
+// 	.call(yAxis);
+
+// d3.csv("data.csv", function(data){
+// 	data.forEach(function(d){
+// 		d.date = parseDate(d.date);
+// 		d.balance = +d.balance; 
+// 	});
+// });
 

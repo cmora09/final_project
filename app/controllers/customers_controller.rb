@@ -44,7 +44,6 @@ class CustomersController < ApplicationController
 
   def show
   	@customer = current_cust
-
   end
   
   def destroy

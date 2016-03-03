@@ -14,9 +14,9 @@
  *= require_self
  */
 
-$bg-color: #E1E1E4;
-$font-color1: white;
-$nav-color: #271339;
+$bg-color: #FFFFFF;
+$font-color1: black;
+$nav-color: #92C8FF;
 $nav-font-size: 1.50em;
 
 header{
@@ -29,7 +29,7 @@ header{
     .m{
       margin: 0 auto;
       display:inline-block;
-      color: white;
+      color: black;
       text-align: center;
     }
     ul{
@@ -71,7 +71,10 @@ body{
       display: inline-block;
       margin: 0 auto;
       }
+    .b{
+      padding-right:10px;
     }
+  }
   }
   h3{
     margin: 0;
@@ -82,7 +85,7 @@ body{
     background-position: center;
     height: 100vh;
   }
-  #graph{
+  #accounts{
     margin: 0 auto;
     display: inline-block;
   }
